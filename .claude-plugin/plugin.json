@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "wafeq",
+  "displayName": "Wafeq",
+  "version": "0.1.0",
+  "description": "Connect Wafeq to Claude for secure accounting workflows.",
+  "author": {
+    "name": "Wafeq",
+    "email": "help@wafeq.com",
+    "url": "https://www.wafeq.com/"
+  },
+  "homepage": "https://github.com/wafeqofficial/ai#readme",
+  "repository": "https://github.com/wafeqofficial/ai",
+  "keywords": [
+    "accounting",
+    "finance",
+    "invoicing",
+    "wafeq"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json"
+}

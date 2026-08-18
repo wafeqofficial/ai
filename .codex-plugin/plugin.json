@@ -1,0 +1,42 @@
+{
+  "name": "wafeq",
+  "version": "0.1.0",
+  "description": "Connect Wafeq to AI assistants for secure accounting workflows.",
+  "author": {
+    "name": "Wafeq",
+    "email": "help@wafeq.com",
+    "url": "https://www.wafeq.com/"
+  },
+  "homepage": "https://github.com/wafeqofficial/ai#readme",
+  "repository": "https://github.com/wafeqofficial/ai",
+  "keywords": [
+    "accounting",
+    "finance",
+    "invoicing",
+    "wafeq"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Wafeq",
+    "shortDescription": "Manage accounting workflows securely in Wafeq",
+    "longDescription": "Review sales, purchases, contacts, invoices, bills, and other accounting records in Wafeq, then complete supported actions with clear confirmation.",
+    "developerName": "Wafeq",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://www.wafeq.com/",
+    "privacyPolicyURL": "https://www.wafeq.com/en/privacy-policy",
+    "termsOfServiceURL": "https://www.wafeq.com/en/terms-of-service",
+    "defaultPrompt": [
+      "Show me what needs attention in Wafeq.",
+      "Summarize recent sales and purchases in Wafeq.",
+      "Help me complete an accounting task in Wafeq."
+    ],
+    "brandColor": "#505EDD",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}
