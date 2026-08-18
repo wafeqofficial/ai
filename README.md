@@ -18,7 +18,14 @@ After publication:
 
 The same public plugin listing is also available to supported Codex clients.
 
-During pre-publication testing, enable Developer mode under Settings > Security and login, add the production MCP URL as a new connection, and complete the Wafeq sign-in flow.
+For pre-publication testing in the desktop app, add this repository as a plugin marketplace:
+
+1. Open the Plugins directory and select Add plugin marketplace.
+2. Set Source to `wafeqofficial/ai` (or `https://github.com/wafeqofficial/ai.git`).
+3. Keep Git ref as `main` and leave Sparse paths empty.
+4. Add the marketplace, install Wafeq, and complete the Wafeq sign-in flow.
+
+On the web, enable Developer mode under Settings > Security and login, add `https://mcp.wafeq.com/mcp` as a custom connection, and complete the Wafeq sign-in flow.
 
 ### Claude on the web or desktop
 
@@ -28,7 +35,7 @@ After publication:
 2. Open Customize > Connectors and connect Wafeq if it is not already connected.
 3. Sign in to Wafeq when prompted.
 
-During pre-publication testing, add a custom remote connector using the production MCP URL. A plugin build from this repository can also be uploaded in Claude Desktop to test the shared skill.
+During pre-publication testing, add `wafeqofficial/ai` as a marketplace in Claude Desktop and install the Wafeq plugin. On the web, add a custom remote connector using `https://mcp.wafeq.com/mcp`.
 
 Team and Enterprise administrators may need to enable the connector or plugin for their organization.
 
@@ -36,6 +43,7 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 
 - .codex-plugin/plugin.json: ChatGPT and Codex package metadata.
 - .claude-plugin/plugin.json: Claude package metadata.
+- .claude-plugin/marketplace.json: shared ChatGPT, Codex, and Claude marketplace catalog.
 - .mcp.json: the single remote Wafeq MCP connection.
 - skills/manage-wafeq/SKILL.md: shared, provider-neutral workflow instructions.
 - assets/: official Wafeq presentation assets.

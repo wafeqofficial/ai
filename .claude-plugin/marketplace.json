@@ -1,0 +1,28 @@
+{
+  "name": "wafeq",
+  "description": "Official Wafeq plugin marketplace.",
+  "owner": {
+    "name": "Wafeq",
+    "email": "help@wafeq.com"
+  },
+  "interface": {
+    "displayName": "Wafeq"
+  },
+  "plugins": [
+    {
+      "name": "wafeq",
+      "source": "./",
+      "description": "Connect Wafeq to AI assistants for secure accounting workflows.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Wafeq",
+        "email": "help@wafeq.com"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
