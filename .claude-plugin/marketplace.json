@@ -13,7 +13,7 @@
       "name": "wafeq",
       "source": "./",
       "description": "Connect Wafeq to AI assistants for secure accounting workflows.",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": {
         "name": "Wafeq",
         "email": "help@wafeq.com"

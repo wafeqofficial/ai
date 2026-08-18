@@ -1,6 +1,6 @@
 {
   "name": "wafeq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Connect Wafeq to AI assistants for secure accounting workflows.",
   "author": {
     "name": "Wafeq",
@@ -36,7 +36,7 @@
       "Help me complete an accounting task in Wafeq."
     ],
     "brandColor": "#505EDD",
-    "composerIcon": "./assets/icon.svg",
-    "logo": "./assets/logo.svg"
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
   }
 }
