@@ -1,28 +1,31 @@
 {
   "name": "wafeq",
-  "version": "0.1.2",
-  "description": "Connect Wafeq to AI assistants for secure accounting workflows.",
+  "version": "0.1.3",
+  "description": "Manage invoices, expenses, reports, and other accounting workflows in Wafeq.",
   "author": {
     "name": "Wafeq",
     "email": "help@wafeq.com",
     "url": "https://www.wafeq.com/"
   },
-  "homepage": "https://github.com/wafeqofficial/ai#readme",
+  "homepage": "https://www.wafeq.com/",
   "repository": "https://github.com/wafeqofficial/ai",
   "keywords": [
     "accounting",
+    "bookkeeping",
+    "expenses",
     "finance",
     "invoicing",
+    "reports",
     "wafeq"
   ],
   "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wafeq",
-    "shortDescription": "Manage accounting workflows securely in Wafeq",
-    "longDescription": "Review sales, purchases, contacts, invoices, bills, and other accounting records in Wafeq, then complete supported actions with clear confirmation.",
+    "shortDescription": "Manage invoices, expenses, reports, and more in Wafeq",
+    "longDescription": "Connect ChatGPT to Wafeq to review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records. Wafeq permissions apply, and supported changes require confirmation.",
     "developerName": "Wafeq",
-    "category": "Productivity",
+    "category": "Business & Operations",
     "capabilities": [
       "Read",
       "Write"
@@ -32,8 +35,8 @@
     "termsOfServiceURL": "https://www.wafeq.com/en/terms-of-service",
     "defaultPrompt": [
       "Show me what needs attention in Wafeq.",
-      "Summarize recent sales and purchases in Wafeq.",
-      "Help me complete an accounting task in Wafeq."
+      "Summarize my recent invoices, bills, and expenses.",
+      "Help me create a draft invoice in Wafeq."
     ],
     "brandColor": "#505EDD",
     "composerIcon": "./assets/logo.png",
