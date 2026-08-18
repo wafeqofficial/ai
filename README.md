@@ -46,7 +46,7 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 - .claude-plugin/marketplace.json: shared ChatGPT, Codex, and Claude marketplace catalog.
 - .mcp.json: the single remote Wafeq MCP connection.
 - skills/manage-wafeq/SKILL.md: shared, provider-neutral workflow instructions.
-- assets/: official Wafeq presentation assets.
+- assets/logo.png: official Wafeq logo used by the plugin listing.
 
 Both manifests reference the same MCP configuration and skill directory. There are no client-specific copies of the skill.
 

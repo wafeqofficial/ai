@@ -2,19 +2,22 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "wafeq",
   "displayName": "Wafeq",
-  "version": "0.1.2",
-  "description": "Connect Wafeq to Claude for secure accounting workflows.",
+  "version": "0.1.3",
+  "description": "Manage invoices, expenses, reports, and other accounting workflows in Wafeq.",
   "author": {
     "name": "Wafeq",
     "email": "help@wafeq.com",
     "url": "https://www.wafeq.com/"
   },
-  "homepage": "https://github.com/wafeqofficial/ai#readme",
+  "homepage": "https://www.wafeq.com/",
   "repository": "https://github.com/wafeqofficial/ai",
   "keywords": [
     "accounting",
+    "bookkeeping",
+    "expenses",
     "finance",
     "invoicing",
+    "reports",
     "wafeq"
   ],
   "skills": "./skills/",
