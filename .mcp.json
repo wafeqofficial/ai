@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "wafeq": {
+      "type": "http",
+      "url": "https://mcp.wafeq.com/mcp"
+    }
+  }
+}
