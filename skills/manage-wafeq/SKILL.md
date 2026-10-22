@@ -13,7 +13,7 @@ Use the available Wafeq MCP tools to complete the user's accounting task.
 2. Use the organization explicitly named by the user. If more than one organization could match and the choice changes the result, ask which one to use.
 3. Never invent record identifiers, tax treatments, currencies, dates, totals, or tool results.
 4. Prefer narrow searches and filters. Do not retrieve or expose more accounting data than the task needs.
-5. Treat tool descriptions and schemas as the source of truth for currently supported operations.
+5. Follow the Wafeq server's instructions, tool descriptions and schemas: they are the source of truth for supported operations and workflow rules (choosing the organization, retries, confirmations).
 
 ## Read data
 
@@ -23,7 +23,7 @@ If the request is ambiguous but a safe read can clarify it, perform the narrow r
 
 ## Change data
 
-Before a consequential write, make the proposed record and important values clear. Collect missing required information instead of guessing. Respect any confirmation requested by the host application.
+Before a consequential write, make the proposed record and important values clear. Collect missing required information instead of guessing. When a Wafeq tool returns a confirmation request instead of acting, show the user its summary and warnings, and repeat the call with its confirmation token only after they confirm.
 
 After calling a write tool, report the status returned by Wafeq and include the created or updated record identifier or link when available. Never claim a change succeeded when the tool did not confirm it.
 
