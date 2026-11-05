@@ -1,0 +1,63 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "wafeq",
+  "version": "0.1.5",
+  "description": "Manage invoices, expenses, reports, and other accounting workflows in Wafeq.",
+  "author": {
+    "name": "Wafeq",
+    "email": "help@wafeq.com",
+    "url": "https://www.wafeq.com/"
+  },
+  "homepage": "https://www.wafeq.com/",
+  "repository": "https://github.com/wafeqofficial/ai",
+  "keywords": [
+    "accounting",
+    "bookkeeping",
+    "expenses",
+    "finance",
+    "invoicing",
+    "reports",
+    "wafeq"
+  ],
+  "license": "Apache-2.0",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Wafeq",
+        "shortDescription": "Accounting workflows in Wafeq",
+        "longDescription": "Connect ChatGPT to Wafeq to review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records. Wafeq permissions apply, and supported changes require confirmation.",
+        "developerName": "Wafeq",
+        "category": "Business & Operations",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "websiteURL": "https://www.wafeq.com/",
+        "privacyPolicyURL": "https://www.wafeq.com/en/privacy-policy",
+        "termsOfServiceURL": "https://www.wafeq.com/en/terms-of-service",
+        "defaultPrompt": [
+          "Show me what needs attention in Wafeq.",
+          "Summarize my recent invoices, bills, and expenses.",
+          "Help me create a draft invoice in Wafeq."
+        ],
+        "brandColor": "#505EDD",
+        "composerIcon": "./assets/logo.png",
+        "logo": "./assets/logo.png",
+        "supportURL": "https://help.wafeq.com/hc/en-ae"
+      },
+      "review": {
+        "prompts": [
+          "Show me what needs attention in Wafeq.",
+          "Summarize my recent invoices, bills, and expenses.",
+          "Help me create a draft invoice in Wafeq."
+        ],
+        "commerce": false,
+        "commerce_description": "The plugin does not enable purchases or process payments."
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "Adds portable plugin and MCP manifests, a concise listing subtitle, and support and publication metadata for the Wafeq accounting workflows."
+      }
+    }
+  }
+}
