@@ -37,6 +37,12 @@ After publication:
 
 During pre-publication testing, add `wafeqofficial/ai` as a marketplace in Claude Desktop and install the Wafeq plugin. On the web, add a custom remote connector using `https://mcp.wafeq.com/mcp`.
 
+### Claude Code
+
+Add the marketplace and install the plugin in one step:
+
+    /plugin install wafeq --marketplace wafeqofficial/ai
+
 Team and Enterprise administrators may need to enable the connector or plugin for their organization.
 
 ## What is included
@@ -47,6 +53,7 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 - .mcp.json: the single remote Wafeq MCP connection.
 - skills/manage-wafeq/SKILL.md: shared, provider-neutral workflow instructions.
 - assets/logo.png: official Wafeq logo used by the plugin listing.
+- LICENSE: Apache License 2.0.
 
 Both manifests reference the same MCP configuration and skill directory. There are no client-specific copies of the skill.
 
@@ -64,3 +71,7 @@ Read operations should use narrow filters and return concise results. Write oper
 - [Terms of service](https://www.wafeq.com/en/terms-of-service)
 
 For support, contact help@wafeq.com.
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE). The license does not grant rights to the Wafeq name or logo.
