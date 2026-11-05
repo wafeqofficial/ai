@@ -47,7 +47,9 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 
 ## What is included
 
-- .codex-plugin/plugin.json: ChatGPT and Codex package metadata.
+- plugin.json: portable package metadata, OpenAI listing, and publication settings.
+- mcp.json: portable remote Wafeq MCP connection with OAuth authentication.
+- .codex-plugin/plugin.json: compatibility metadata for older ChatGPT and Codex clients.
 - .claude-plugin/plugin.json: Claude package metadata.
 - .claude-plugin/marketplace.json: shared ChatGPT, Codex, and Claude marketplace catalog.
 - .mcp.json: the single remote Wafeq MCP connection.
@@ -55,7 +57,59 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 - assets/logo.png: official Wafeq logo used by the plugin listing.
 - LICENSE: Apache License 2.0.
 
-Both manifests reference the same MCP configuration and skill directory. There are no client-specific copies of the skill.
+The compatibility manifests share `.mcp.json`; the portable package uses
+`mcp.json`. Both configurations connect to the same Wafeq server, and all clients
+share one skill directory.
+
+## Prepare an OpenAI Platform upload
+
+The portable package discovers `skills/` and `mcp.json` at the repository root.
+Keep the identity, version, and listing in `.codex-plugin/plugin.json` synchronized
+with `plugin.json`, and keep both MCP configurations pointed at the same server.
+The publication settings target all available countries. The commerce declaration
+reflects the publisher's statement that purchases and payments are not enabled;
+recording an accounting payment is distinct from moving money.
+
+Create a separate upload ZIP from this directory using an explicit file list:
+
+```sh
+zip /tmp/wafeq-0.1.5-draft.zip \
+  plugin.json mcp.json \
+  .codex-plugin/plugin.json .claude-plugin/plugin.json .mcp.json \
+  skills/manage-wafeq/SKILL.md assets/logo.png LICENSE README.md
+```
+
+Use a new output path if the archive already exists: `zip` updates existing
+archives and could retain unwanted files. Do not upload a whole-repository ZIP:
+the upload must exclude the marketplace catalog, Git history, credentials, and
+unrelated files. Public uploads must also exclude `.app.json` and non-null
+`apps` declarations in every manifest.
+
+This draft is **not ready for submission** until these items are complete:
+
+- Inspect authenticated tool schemas and their boolean `readOnlyHint`,
+  `openWorldHint`, and `destructiveHint` annotations. The server source is hosted
+  separately; this repository cannot validate or fix its tools.
+- Prepare five distinct positive and three negative MCP review cases with exact
+  tool names, important arguments, sample data, and observable results. Run them
+  in a signed-in development connection and record the actual outcomes. The
+  manifest's review prompts are suggestions, not executed review cases.
+- Record a real demo against that development connection. In a dedicated sample
+  organization, show “Summarize my recent invoices, bills, and expenses,” then
+  “Help me create a draft invoice in Wafeq.” Show required clarifications,
+  confirmation, and the returned result. Include an unsupported request such as
+  “Buy a laptop for me.” Rehearse first, keep credentials off screen, verify
+  playback, host it for reviewers, and add the verified recording URL to
+  `extensions.com.openai.review.demo_recording_url`.
+- Confirm that the published privacy policy covers this integration's actual
+  data collection, sharing, retention, and deletion practices. Confirm that the
+  terms apply to the plugin and verify the commerce declaration against the
+  authenticated tools.
+
+Before submitting, complete publisher/domain verification, reviewer access,
+OAuth connection checks, required scans, and legal attestations in the portal.
+Reviewer credentials belong only in secure portal fields. See OpenAI's
+[submission guide](https://developers.openai.com/plugins/deploy/submission).
 
 ## Authentication and safety
 

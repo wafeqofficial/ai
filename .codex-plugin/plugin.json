@@ -22,7 +22,7 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wafeq",
-    "shortDescription": "Manage invoices, expenses, reports, and more in Wafeq",
+    "shortDescription": "Accounting workflows in Wafeq",
     "longDescription": "Connect ChatGPT to Wafeq to review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records. Wafeq permissions apply, and supported changes require confirmation.",
     "developerName": "Wafeq",
     "category": "Business & Operations",
@@ -30,7 +30,7 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://www.wafeq.com/",
+    "websiteURL": "https://github.com/wafeqofficial/ai",
     "privacyPolicyURL": "https://www.wafeq.com/en/privacy-policy",
     "termsOfServiceURL": "https://www.wafeq.com/en/terms-of-service",
     "defaultPrompt": [
@@ -40,6 +40,7 @@
     ],
     "brandColor": "#505EDD",
     "composerIcon": "./assets/logo.png",
-    "logo": "./assets/logo.png"
+    "logo": "./assets/logo.png",
+    "supportURL": "https://help.wafeq.com/hc/en-ae"
   }
 }
