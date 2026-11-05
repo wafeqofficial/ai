@@ -73,7 +73,7 @@ recording an accounting payment is distinct from moving money.
 Create a separate upload ZIP from this directory using an explicit file list:
 
 ```sh
-zip /tmp/wafeq-0.1.5-draft.zip \
+zip /tmp/wafeq-0.1.6-draft.zip \
   plugin.json mcp.json \
   .codex-plugin/plugin.json .claude-plugin/plugin.json .mcp.json \
   skills/manage-wafeq/SKILL.md assets/logo.png LICENSE README.md
