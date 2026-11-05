@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "wafeq",
   "displayName": "Wafeq",
-  "version": "0.1.5",
-  "description": "Manage invoices, expenses, reports, and other accounting workflows in Wafeq.",
+  "version": "0.1.6",
+  "description": "Manage invoices, bills, expenses, payments, reports, and other accounting records in Wafeq.",
   "author": {
     "name": "Wafeq",
     "email": "help@wafeq.com",

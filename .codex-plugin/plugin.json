@@ -1,7 +1,7 @@
 {
   "name": "wafeq",
-  "version": "0.1.5",
-  "description": "Manage invoices, expenses, reports, and other accounting workflows in Wafeq.",
+  "version": "0.1.6",
+  "description": "Manage invoices, bills, expenses, payments, reports, and other accounting records in Wafeq.",
   "author": {
     "name": "Wafeq",
     "email": "help@wafeq.com",
@@ -22,8 +22,8 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wafeq",
-    "shortDescription": "Accounting workflows in Wafeq",
-    "longDescription": "Connect ChatGPT to Wafeq to review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records. Wafeq permissions apply, and supported changes require confirmation.",
+    "shortDescription": "Manage accounting in Wafeq",
+    "longDescription": "Review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records in Wafeq. Each user signs in with their own Wafeq account, and Wafeq applies that user's permissions. Supported changes require confirmation before Wafeq applies them.",
     "developerName": "Wafeq",
     "category": "Business & Operations",
     "capabilities": [
