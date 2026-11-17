@@ -85,32 +85,6 @@ the upload must exclude the marketplace catalog, Git history, credentials, and
 unrelated files. Public uploads must also exclude `.app.json` and non-null
 `apps` declarations in every manifest.
 
-This draft is **not ready for submission** until these items are complete:
-
-- Inspect authenticated tool schemas and their boolean `readOnlyHint`,
-  `openWorldHint`, and `destructiveHint` annotations. The server source is hosted
-  separately; this repository cannot validate or fix its tools.
-- Prepare five distinct positive and three negative MCP review cases with exact
-  tool names, important arguments, sample data, and observable results. Run them
-  in a signed-in development connection and record the actual outcomes. The
-  manifest's review prompts are suggestions, not executed review cases.
-- Record a real demo against that development connection. In a dedicated sample
-  organization, show “Summarize my recent invoices, bills, and expenses,” then
-  “Help me create a draft invoice in Wafeq.” Show required clarifications,
-  confirmation, and the returned result. Include an unsupported request such as
-  “Buy a laptop for me.” Rehearse first, keep credentials off screen, verify
-  playback, host it for reviewers, and add the verified recording URL to
-  `extensions.com.openai.review.demo_recording_url`.
-- Confirm that the published privacy policy covers this integration's actual
-  data collection, sharing, retention, and deletion practices. Confirm that the
-  terms apply to the plugin and verify the commerce declaration against the
-  authenticated tools.
-
-Before submitting, complete publisher/domain verification, reviewer access,
-OAuth connection checks, required scans, and legal attestations in the portal.
-Reviewer credentials belong only in secure portal fields. See OpenAI's
-[submission guide](https://developers.openai.com/plugins/deploy/submission).
-
 ## Authentication and safety
 
 The plugin never stores Wafeq credentials. Each user signs in through Wafeq OAuth, and the hosted MCP server applies that user's organization membership and permissions.
