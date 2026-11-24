@@ -2,7 +2,7 @@
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "wafeq",
   "version": "0.1.6",
-  "description": "Manage invoices, bills, expenses, payments, reports, and other accounting records in Wafeq.",
+  "description": "Run your business better - From any conversation",
   "author": {
     "name": "Wafeq",
     "email": "help@wafeq.com",
@@ -25,7 +25,7 @@
       "interface": {
         "displayName": "Wafeq",
         "shortDescription": "Manage accounting in Wafeq",
-        "longDescription": "Review and manage invoices, bills, expenses, contacts, inventory, payments, reports, and other accounting records in Wafeq. Each user signs in with their own Wafeq account, and Wafeq applies that user's permissions. Supported changes require confirmation before Wafeq applies them.",
+        "longDescription": "Run your accounting in Wafeq directly from ChatGPT. Check your profit and loss, balance sheet, cash flow and trial balance for any period.\n\nSee who owes you money and which bills are coming due with aged receivables and payables. Create and update invoices, quotes, credit notes, bills and purchase orders, record expenses and payments, and email invoices to your customers.\n\nClassify and match bank transactions, post journal entries, and run fixed asset depreciation. Report e-invoices to ZATCA in Saudi Arabia and the FTA in the UAE, and review your VAT return before you file it. Manage payroll too: prepare pay runs and payslips for your team. For groups of companies, get consolidated reports across all of them.\n\nEach user signs in with their own Wafeq account, and Wafeq applies that user's permissions. Supported changes require confirmation before Wafeq applies them.",
         "developerName": "Wafeq",
         "category": "Business & Operations",
         "capabilities": [

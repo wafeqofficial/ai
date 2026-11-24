@@ -1,5 +1,11 @@
 # Wafeq for AI assistants
 
+Run your accounting in Wafeq directly from Claude. Check your profit and loss, balance sheet, cash flow and trial balance for any period.
+
+See who owes you money and which bills are coming due with aged receivables and payables. Create and update invoices, quotes, credit notes, bills and purchase orders, record expenses and payments, and email invoices to your customers.
+
+Classify and match bank transactions, post journal entries, and run fixed asset depreciation. Report e-invoices to ZATCA in Saudi Arabia and the FTA in the UAE, and review your VAT return before you file it. Manage payroll too: prepare pay runs and payslips for your team. For groups of companies, get consolidated reports across all of them.
+
 Use Wafeq from ChatGPT, Codex, and Claude through one secure, hosted MCP connection.
 
 This repository contains the public plugin package and shared skill instructions. Authentication, authorization, MCP tools, and accounting business logic remain hosted by Wafeq at:
