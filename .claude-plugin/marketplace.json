@@ -6,9 +6,6 @@
     "email": "help@wafeq.com",
     "url": "https://www.wafeq.com/"
   },
-  "interface": {
-    "displayName": "Wafeq"
-  },
   "plugins": [
     {
       "name": "wafeq",
@@ -19,10 +16,6 @@
         "name": "Wafeq",
         "email": "help@wafeq.com",
         "url": "https://www.wafeq.com/"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
       },
       "category": "Business & Operations"
     }

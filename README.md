@@ -51,39 +51,16 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 - mcp.json: portable remote Wafeq MCP connection with OAuth authentication.
 - .codex-plugin/plugin.json: compatibility metadata for older ChatGPT and Codex clients.
 - .claude-plugin/plugin.json: Claude package metadata.
-- .claude-plugin/marketplace.json: shared ChatGPT, Codex, and Claude marketplace catalog.
+- .claude-plugin/marketplace.json: Claude marketplace catalog.
+- .agents/plugins/marketplace.json: ChatGPT and Codex marketplace catalog.
 - .mcp.json: the single remote Wafeq MCP connection.
 - skills/manage-wafeq/SKILL.md: shared, provider-neutral workflow instructions.
-- assets/logo.png: official Wafeq logo used by the plugin listing.
+- assets/: official Wafeq logo used by the plugin listing.
 - LICENSE: Apache License 2.0.
 
 The compatibility manifests share `.mcp.json`; the portable package uses
 `mcp.json`. Both configurations connect to the same Wafeq server, and all clients
 share one skill directory.
-
-## Prepare an OpenAI Platform upload
-
-The portable package discovers `skills/` and `mcp.json` at the repository root.
-Keep the identity, version, and listing in `.codex-plugin/plugin.json` synchronized
-with `plugin.json`, and keep both MCP configurations pointed at the same server.
-The publication settings target all available countries. The commerce declaration
-reflects the publisher's statement that purchases and payments are not enabled;
-recording an accounting payment is distinct from moving money.
-
-Create a separate upload ZIP from this directory using an explicit file list:
-
-```sh
-zip /tmp/wafeq-0.1.6-draft.zip \
-  plugin.json mcp.json \
-  .codex-plugin/plugin.json .claude-plugin/plugin.json .mcp.json \
-  skills/manage-wafeq/SKILL.md assets/logo.png LICENSE README.md
-```
-
-Use a new output path if the archive already exists: `zip` updates existing
-archives and could retain unwanted files. Do not upload a whole-repository ZIP:
-the upload must exclude the marketplace catalog, Git history, credentials, and
-unrelated files. Public uploads must also exclude `.app.json` and non-null
-`apps` declarations in every manifest.
 
 ## Authentication and safety
 
