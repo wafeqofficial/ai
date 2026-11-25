@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "wafeq",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Run your business better - From any conversation",
   "author": {
     "name": "Wafeq",
@@ -46,11 +46,55 @@
         "supportURL": "https://help.wafeq.com/hc/en-ae"
       },
       "review": {
-        "prompts": [
-          "Show me what needs attention in Wafeq.",
-          "Summarize my recent invoices, bills, and expenses.",
-          "Help me create a draft invoice in Wafeq."
-        ],
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Monthly profit and loss",
+              "prompt": "What was my profit and loss last month?",
+              "tools_triggered": "get_capabilities, get_profit_and_loss_report",
+              "expected_behavior": "Returns revenue, expenses and net profit for the previous calendar month for the connected organization, matching the profit and loss report in Wafeq."
+            },
+            {
+              "description": "Overdue customer balances",
+              "prompt": "Which customers owe me money, and how overdue are they?",
+              "tools_triggered": "get_capabilities, get_aged_receivables_report",
+              "expected_behavior": "Lists customer balances grouped by how overdue they are, with totals matching the aged receivables report in Wafeq."
+            },
+            {
+              "description": "Unreconciled bank transactions",
+              "prompt": "Which of my bank transactions are not reconciled yet?",
+              "tools_triggered": "get_capabilities, list_bank_transactions",
+              "expected_behavior": "Lists the unreconciled bank transactions with date, description and amount, and states how many there are."
+            },
+            {
+              "description": "Create a draft invoice",
+              "prompt": "Create a draft invoice for Almarai for 2 units of Consulting.",
+              "tools_triggered": "get_capabilities, list_contacts, list_items, create_invoice",
+              "expected_behavior": "Finds the customer Almarai and the Consulting item, creates a draft invoice for 2 units at the item price plus 15% VAT, and returns the invoice number and a link to it in Wafeq. The invoice stays a draft."
+            },
+            {
+              "description": "Quarterly VAT return",
+              "prompt": "Show me my VAT return for last quarter.",
+              "tools_triggered": "get_capabilities, get_vat_return_report",
+              "expected_behavior": "Shows the ZATCA VAT return boxes for the previous filing quarter, including sales VAT, purchase VAT and the net VAT due or refundable, matching the VAT return in Wafeq."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsupported payment: Wafeq records accounting entries and cannot move money",
+              "prompt": "Transfer 5,000 SAR to my supplier's bank account."
+            },
+            {
+              "description": "Unsupported filing: Wafeq prepares the VAT return but cannot submit it to ZATCA",
+              "prompt": "Submit my VAT return to ZATCA for last quarter."
+            },
+            {
+              "description": "Access outside the connected account: only the organizations the user authorized are available",
+              "prompt": "Show me the invoices for my other company, Riyadh Trading Co."
+            }
+          ]
+        },
+        "demo_recording_url": "https://drive.google.com/file/d/1YpfSvA9rDWtqq3UOqo3SwI6vZVJ0k-mI/view?usp=sharing",
         "commerce": false,
         "commerce_description": "The plugin does not enable purchases or process payments."
       },
