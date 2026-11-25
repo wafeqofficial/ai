@@ -8,7 +8,7 @@ Classify and match bank transactions, post journal entries, and run fixed asset 
 
 Use Wafeq from ChatGPT, Codex, and Claude through one secure, hosted MCP connection.
 
-This repository contains the public plugin package and shared skill instructions. Authentication, authorization, MCP tools, and accounting business logic remain hosted by Wafeq at:
+This repository contains the public plugin package. Authentication, authorization, MCP tools, and accounting business logic remain hosted by Wafeq at:
 
     https://mcp.wafeq.com/mcp
 
@@ -60,13 +60,11 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 - .claude-plugin/marketplace.json: Claude marketplace catalog.
 - .agents/plugins/marketplace.json: ChatGPT and Codex marketplace catalog.
 - .mcp.json: the single remote Wafeq MCP connection.
-- skills/manage-wafeq/SKILL.md: shared, provider-neutral workflow instructions.
 - assets/: official Wafeq logo used by the plugin listing.
 - LICENSE: Apache License 2.0.
 
 The compatibility manifests share `.mcp.json`; the portable package uses
-`mcp.json`. Both configurations connect to the same Wafeq server, and all clients
-share one skill directory.
+`mcp.json`. Both configurations connect to the same Wafeq server.
 
 ## Authentication and safety
 

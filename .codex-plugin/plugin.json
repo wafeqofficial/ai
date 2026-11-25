@@ -18,7 +18,6 @@
     "reports",
     "wafeq"
   ],
-  "skills": "./skills/",
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "Wafeq",
