@@ -2,10 +2,13 @@ name: Release zip
 
 # Builds the OpenAI Platform upload with `make zip` on every push to stable,
 # so CI and a laptop build the same file. Download it from the run's artifacts.
+# The promote workflow calls it too, because its own push to stable starts
+# no workflow.
 
 on:
   push:
     branches: [stable]
+  workflow_call:
 
 permissions:
   contents: read

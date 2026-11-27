@@ -1,0 +1,73 @@
+name: Promote to stable
+
+# Releases the current main commit: tags it v<version>, fast-forwards stable
+# to it, then builds the OpenAI zip. Start it by hand from the Actions tab,
+# on main.
+#
+# A push made with GITHUB_TOKEN starts no other workflow, so this workflow
+# calls the release zip workflow itself instead of relying on its push trigger.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promote-stable
+  cancel-in-progress: false
+
+jobs:
+  promote:
+    name: Tag and move stable
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: ${{ github.repository }}
+      SHA: ${{ github.sha }}
+    steps:
+      - name: Read the version
+        run: |
+          version=$(gh api -H "Accept: application/vnd.github.raw+json" "repos/$REPO/contents/plugin.json?ref=$SHA" \
+            | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])')
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Stop if the version is already tagged
+        run: |
+          count=$(gh api "repos/$REPO/git/matching-refs/tags/v$VERSION" \
+            --jq "map(select(.ref == \"refs/tags/v$VERSION\")) | length")
+          if [ "$count" != "0" ]; then
+            echo "::error::v$VERSION is already tagged. Raise the version in the manifests first."
+            exit 1
+          fi
+
+      - name: Stop if stable cannot fast-forward
+        run: |
+          status=$(gh api "repos/$REPO/compare/stable...$SHA" --jq .status)
+          echo "stable...$SHA is $status"
+          case "$status" in
+            ahead|identical) echo "STATUS=$status" >> "$GITHUB_ENV" ;;
+            *) echo "::error::stable has commits that main does not have ($status). Fix stable by hand."; exit 1 ;;
+          esac
+
+      - name: Tag the release
+        run: gh api -X POST "repos/$REPO/git/refs" -f ref="refs/tags/v$VERSION" -f sha="$SHA"
+
+      - name: Fast-forward stable
+        if: env.STATUS == 'ahead'
+        run: gh api -X PATCH "repos/$REPO/git/refs/heads/stable" -f sha="$SHA" -F force=false
+
+      - name: Summary
+        run: echo "Released v$VERSION at $SHA. stable was $STATUS." >> "$GITHUB_STEP_SUMMARY"
+
+  zip:
+    name: Build the OpenAI upload
+    needs: promote
+    uses: ./.github/workflows/release-zip.yml
