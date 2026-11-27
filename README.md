@@ -66,6 +66,8 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 The compatibility manifests share `.mcp.json`; the portable package uses
 `mcp.json`. Both configurations connect to the same Wafeq server.
 
+Run `make zip` to build the OpenAI upload in `dist/`.
+
 ## Authentication and safety
 
 The plugin never stores Wafeq credentials. Each user signs in through Wafeq OAuth, and the hosted MCP server applies that user's organization membership and permissions.
