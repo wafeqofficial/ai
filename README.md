@@ -66,6 +66,18 @@ Team and Enterprise administrators may need to enable the connector or plugin fo
 The compatibility manifests share `.mcp.json`; the portable package uses
 `mcp.json`. Both configurations connect to the same Wafeq server.
 
+## What the Wafeq tools can do
+
+The Wafeq MCP server reads and changes data in the Wafeq organizations the user authorizes, within the permissions of their Wafeq role. Some tools act outside Wafeq or cannot be undone:
+
+- **Send:** email invoices, credit notes, invoice receipts and payslips to the recipients on the record (`send_invoice`, `send_credit_note`, `send_invoice_receipt`, `send_payslips`).
+- **Publish:** for organizations connected to e-invoicing, report invoices, credit notes and cash invoices to the tax authority (ZATCA in Saudi Arabia, the FTA in the UAE), and void reported invoices (`report_invoice`, `report_credit_note`, `report_cash_invoice`, `void_invoice`).
+- **Delete:** delete records such as invoices, bills, quotes, credit notes, payments, manual journals, contacts, items, employees, payroll records, bank accounts and bank transactions (the `delete_*` tools).
+- **Pay:** record payments, payslip payments and advance recoveries in the books (`create_payment`, `pay_payslip`). No tool moves money: Wafeq records accounting entries only.
+- **Change access:** no tool changes who can use Wafeq. The tools cannot invite or remove users, or change roles or permissions. `revoke_approval` only withdraws the user's own pending approval submission.
+
+The server tells the AI assistant to get the user's explicit confirmation before it calls a tool that sends, reports, deletes, or cannot be undone.
+
 ## Authentication and safety
 
 The plugin never stores Wafeq credentials. Each user signs in through Wafeq OAuth, and the hosted MCP server applies that user's organization membership and permissions.
