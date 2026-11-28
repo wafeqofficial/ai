@@ -1,20 +1,22 @@
 name: Release zip
 
-# Builds the OpenAI Platform upload with `make zip` on every push to stable,
-# so CI and a laptop build the same file. Download it from the run's artifacts.
-# The promote workflow calls it too, because its own push to stable starts
-# no workflow.
+# Builds the OpenAI Platform upload with `make zip`, so CI and a laptop build
+# the same file. Download it from the run's artifacts. The promote workflow
+# calls it with the main commit it released: stable holds no Makefile.
 
 on:
-  push:
-    branches: [stable]
   workflow_call:
+    inputs:
+      ref:
+        description: The main commit to build the zip from
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 concurrency:
-  group: release-zip-${{ github.ref }}
+  group: release-zip-${{ inputs.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -25,6 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+          ref: ${{ inputs.ref }}
           persist-credentials: false
 
       - name: Build the zip

@@ -1,11 +1,17 @@
 name: Promote to stable
 
-# Releases the current main commit: tags it v<version>, fast-forwards stable
-# to it, then builds the OpenAI zip. Start it by hand from the Actions tab,
-# on main.
+# Releases the current main commit. It adds a release commit to stable that
+# holds only the plugin files, tags it v<version>, then builds the OpenAI zip
+# from the main commit. Start it by hand from the Actions tab, on main.
+#
+# The Claude plugin directory publishes from stable and validates every file
+# on it. It refuses scripts and build files from an organization that is not
+# Verified, so the CI tooling (.github/, Makefile, .gitignore) stays on main.
+# A release commit takes main's tree without those paths and has the previous
+# stable commit as its parent, so stable only moves forward.
 #
 # A push made with GITHUB_TOKEN starts no other workflow, so this workflow
-# calls the release zip workflow itself instead of relying on its push trigger.
+# calls the release zip workflow itself.
 
 on:
   workflow_dispatch:
@@ -19,7 +25,7 @@ concurrency:
 
 jobs:
   promote:
-    name: Tag and move stable
+    name: Release to stable and tag
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -48,26 +54,59 @@ jobs:
             exit 1
           fi
 
-      - name: Stop if stable cannot fast-forward
+      - name: Build the release tree
         run: |
-          status=$(gh api "repos/$REPO/compare/stable...$SHA" --jq .status)
-          echo "stable...$SHA is $status"
-          case "$status" in
-            ahead|identical) echo "STATUS=$status" >> "$GITHUB_ENV" ;;
-            *) echo "::error::stable has commits that main does not have ($status). Fix stable by hand."; exit 1 ;;
-          esac
+          stable=$(gh api "repos/$REPO/git/ref/heads/stable" --jq .object.sha)
+          stable_tree=$(gh api "repos/$REPO/git/commits/$stable" --jq .tree.sha)
+          main_tree=$(gh api "repos/$REPO/git/commits/$SHA" --jq .tree.sha)
+          gh api "repos/$REPO/git/trees/$main_tree?recursive=1" > main-tree.json
+          python3 - <<'PY' > release-tree.json
+          import json
+
+          # Paths that stay on main: CI tooling the Claude directory refuses.
+          def is_tooling(path):
+              return path.startswith('.github/') or path in ('Makefile', '.gitignore')
+
+          tree = json.load(open('main-tree.json'))
+          if tree.get('truncated'):
+              raise SystemExit('The tree listing of main is truncated.')
+          entries = [
+              {'path': e['path'], 'mode': e['mode'], 'type': 'blob', 'sha': e['sha']}
+              for e in tree['tree']
+              if e['type'] == 'blob' and not is_tooling(e['path'])
+          ]
+          print(json.dumps({'tree': entries}))
+          PY
+          release_tree=$(gh api -X POST "repos/$REPO/git/trees" --input release-tree.json --jq .sha)
+          echo "Release files:"
+          python3 -c 'import json; [print(" ", e["path"]) for e in json.load(open("release-tree.json"))["tree"]]'
+          {
+            echo "STABLE=$stable"
+            echo "STABLE_TREE=$stable_tree"
+            echo "RELEASE_TREE=$release_tree"
+          } >> "$GITHUB_ENV"
+
+      # When stable already holds these files (a rerun after a failed tag), only the tag is missing.
+      - name: Add the release commit to stable
+        if: env.RELEASE_TREE != env.STABLE_TREE
+        run: |
+          release=$(gh api -X POST "repos/$REPO/git/commits" \
+            -f message="release: v$VERSION from $SHA" \
+            -f tree="$RELEASE_TREE" \
+            -f "parents[]=$STABLE" \
+            --jq .sha)
+          gh api -X PATCH "repos/$REPO/git/refs/heads/stable" -f sha="$release" -F force=false
+          echo "STABLE=$release" >> "$GITHUB_ENV"
 
       - name: Tag the release
-        run: gh api -X POST "repos/$REPO/git/refs" -f ref="refs/tags/v$VERSION" -f sha="$SHA"
-
-      - name: Fast-forward stable
-        if: env.STATUS == 'ahead'
-        run: gh api -X PATCH "repos/$REPO/git/refs/heads/stable" -f sha="$SHA" -F force=false
+        run: gh api -X POST "repos/$REPO/git/refs" -f ref="refs/tags/v$VERSION" -f sha="$STABLE"
 
       - name: Summary
-        run: echo "Released v$VERSION at $SHA. stable was $STATUS." >> "$GITHUB_STEP_SUMMARY"
+        run: echo "Released v$VERSION as stable $STABLE, from main $SHA." >> "$GITHUB_STEP_SUMMARY"
 
   zip:
     name: Build the OpenAI upload
     needs: promote
     uses: ./.github/workflows/release-zip.yml
+    with:
+      ref: ${{ github.sha }}
